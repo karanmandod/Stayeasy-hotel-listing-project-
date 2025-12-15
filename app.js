@@ -67,7 +67,7 @@ const sessionOptions = {
 };
 
 // app.get("/", (req, res) => {
-//     res.send("Hey, i am root");
+//     res.render("/listings");
 // });
 
 
@@ -96,7 +96,11 @@ app.use((req,res,next)=>{
     next();
 });
 
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
 
+app.use("/listings", listingsRouter);
 
 // app.get("/demouser", async(req,res)=>{
 //     let fakeUser=new User({
@@ -134,6 +138,8 @@ app.use((err, req, res, next) => {
     // res.status(statusCode).send(message);
 });
 
-app.listen(8080, () => {
-    console.log("server is listening on port 8080");
+const PORT = 8080;
+
+app.listen(PORT, () => {
+    console.log(`server is listening on port ${PORT}`);
 });
